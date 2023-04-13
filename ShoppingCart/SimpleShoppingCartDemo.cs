@@ -45,15 +45,21 @@
             for (int i = 0; i < myShoppingCartCounts.Count; i++)
             {
                 var count = myShoppingCartCounts[i];
-                var product = myShoppingCartProducts[i];
-                var productIndex = Array.IndexOf(productNames, product);
-                var price = productPrices[productIndex];
+                var productName = myShoppingCartProducts[i];
+                var price = PriceFromProductName(productNames, productPrices, productName);
                 var orderLinePrice = price * count;
-                Console.WriteLine($"  {count} stk. {product} a kr {price} = {orderLinePrice}");
+                Console.WriteLine($"  {count} stk. {productName} a kr {price} = {orderLinePrice}");
                 totalPrice += orderLinePrice;
             }
 
             Console.WriteLine($"Totalpris: {totalPrice}");
+        }
+
+        private static int PriceFromProductName(string[] productNames, int[] productPrices, string productName)
+        {
+            var productIndex = Array.IndexOf(productNames, productName);
+            var price = productPrices[productIndex];
+            return price;
         }
     }
 }
