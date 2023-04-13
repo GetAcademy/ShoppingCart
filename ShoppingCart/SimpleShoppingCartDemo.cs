@@ -5,16 +5,16 @@
         public static void Run()
         {
             var productNames = new[] { "A", "B", "C" };
-            var prices = new[] { 40, 70, 30 };
+            var productPrices = new[] { 40, 70, 30 };
             var myShoppingCartProducts = new List<string>();
             var myShoppingCartCounts = new List<int>();
-            ShowCart(productNames, prices, myShoppingCartProducts, myShoppingCartCounts);
+            ShowCart(productNames, productPrices, myShoppingCartProducts, myShoppingCartCounts);
             Buy("A", 1, myShoppingCartProducts, myShoppingCartCounts);
-            ShowCart(productNames, prices, myShoppingCartProducts, myShoppingCartCounts);
+            ShowCart(productNames, productPrices, myShoppingCartProducts, myShoppingCartCounts);
             Buy("B", 3, myShoppingCartProducts, myShoppingCartCounts);
-            ShowCart(productNames, prices, myShoppingCartProducts, myShoppingCartCounts);
+            ShowCart(productNames, productPrices, myShoppingCartProducts, myShoppingCartCounts);
             Buy("A", 4, myShoppingCartProducts, myShoppingCartCounts);
-            ShowCart(productNames, prices, myShoppingCartProducts, myShoppingCartCounts);
+            ShowCart(productNames, productPrices, myShoppingCartProducts, myShoppingCartCounts);
         }
 
         private static void Buy(string productName, int count, List<string> myShoppingCartProducts, List<int> myShoppingCartCounts)
@@ -33,7 +33,7 @@
             Console.WriteLine($"Du kjøpte {count} stk. {productName}");
         }
 
-        private static void ShowCart(string[] productNames, int[] prices, List<string> myShoppingCartProducts, List<int> myShoppingCartCounts)
+        private static void ShowCart(string[] productNames, int[] productPrices, List<string> myShoppingCartProducts, List<int> myShoppingCartCounts)
         {
             if (myShoppingCartProducts.Count == 0)
             {
@@ -47,7 +47,7 @@
                 var count = myShoppingCartCounts[i];
                 var product = myShoppingCartProducts[i];
                 var productIndex = Array.IndexOf(productNames, product);
-                var price = prices[productIndex];
+                var price = productPrices[productIndex];
                 var orderLinePrice = price * count;
                 Console.WriteLine($"  {count} stk. {product} a kr {price} = {orderLinePrice}");
                 totalPrice += orderLinePrice;
